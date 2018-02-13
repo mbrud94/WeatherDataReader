@@ -28,7 +28,8 @@ namespace WeatherDataReader
 
 
             allItems = allItems.OrderBy(i => i.Data).ToList();
-            var groups = DataGroup.PrepareGroups(allItems, 2);
+            var groups = MeteoDataGroup.PrepareGroups(allItems, 2);
+            MeteoDataSet dataSet = new MeteoDataSet(groups);
             //TODO: prapre CSV and labelization
 
 
@@ -51,10 +52,10 @@ namespace WeatherDataReader
             Console.ReadLine();
         }
 
-        private static List<DataGroup> springItems = new List<DataGroup>();
-        private static List<DataGroup> summerItems = new List<DataGroup>();
-        private static List<DataGroup> autumnItems = new List<DataGroup>();
-        private static List<DataGroup> winterItems = new List<DataGroup>();
+        private static List<MeteoDataGroup> springItems = new List<MeteoDataGroup>();
+        private static List<MeteoDataGroup> summerItems = new List<MeteoDataGroup>();
+        private static List<MeteoDataGroup> autumnItems = new List<MeteoDataGroup>();
+        private static List<MeteoDataGroup> winterItems = new List<MeteoDataGroup>();
 
         private static List<MetoData> allItems = new List<MetoData>();
 

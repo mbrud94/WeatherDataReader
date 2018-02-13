@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeatherDataReader
 {
-    public class DataGroup
+    public class MeteoDataGroup
     {
         public List<MetoData> Inputs { get; set; }
         public MetoData Output { get; set; }
@@ -43,9 +43,9 @@ namespace WeatherDataReader
         }
 
 
-        public static List<DataGroup> PrepareGroups(List<MetoData> ungrupedData, int inputSize)
+        public static List<MeteoDataGroup> PrepareGroups(List<MetoData> ungrupedData, int inputSize)
         {
-            List<DataGroup> res = new List<DataGroup>();
+            List<MeteoDataGroup> res = new List<MeteoDataGroup>();
             int notValidGroups = 0;
 
             for(int i = 0; i < ungrupedData.Count - inputSize - 1; i++)
@@ -55,7 +55,7 @@ namespace WeatherDataReader
                 {
                     input.Add(ungrupedData[i + j]);
                 }
-                DataGroup group = new DataGroup { Inputs = input, Output = ungrupedData[i + inputSize] };
+                MeteoDataGroup group = new MeteoDataGroup { Inputs = input, Output = ungrupedData[i + inputSize] };
                 if(IsGroupValid(group))
                 {
                     res.Add(group);
@@ -72,7 +72,7 @@ namespace WeatherDataReader
             return res;
         }
 
-        private static bool IsGroupValid(DataGroup group)
+        private static bool IsGroupValid(MeteoDataGroup group)
         {
             MetoData prevInput = group.Inputs[0];
             for(int i = 1; i < group.Inputs.Count; i++)
