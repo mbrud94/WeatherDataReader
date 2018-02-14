@@ -14,6 +14,7 @@ namespace WeatherDataReader
     class Program
     {
         static string path = $@"D:\Studia\Mgr\Meteodata\";
+        static int GROUP_SIZE = 2;
 
         static void Main(string[] args)
         {
@@ -28,8 +29,20 @@ namespace WeatherDataReader
 
 
             allItems = allItems.OrderBy(i => i.Data).ToList();
-            var groups = MeteoDataGroup.PrepareGroups(allItems, 2);
-            MeteoDataSet dataSet = new MeteoDataSet(groups);
+            var groups = MeteoDataGroup.PrepareGroups(allItems, GROUP_SIZE);
+            MeteoDataSet springDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Spring).ToList(), Season.Spring);
+            MeteoDataSet summerDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Summer).ToList(), Season.Summer);
+            MeteoDataSet autumnDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Autumn).ToList(), Season.Autumn);
+            MeteoDataSet winterDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Winter).ToList(), Season.Winter);
+            List<MeteoDataSet> dataSets = new List<MeteoDataSet> { springDS, summerDS, autumnDS, winterDS };
+            foreach(var ds in dataSets)
+            {
+                CsvSaver.SaveDataSet(ds, path);
+                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Output), path);
+                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Input), path);
+                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Both), path);
+            }
+
             //TODO: prapre CSV and labelization
 
 

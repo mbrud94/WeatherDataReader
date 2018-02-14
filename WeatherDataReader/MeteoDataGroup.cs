@@ -17,7 +17,7 @@ namespace WeatherDataReader
             DateTime autumnStart = new DateTime(2000, 9, 23);
             DateTime winterStart = new DateTime(2000, 12, 22);
 
-            var keyItem = Inputs[0]; //assign by first of input sequence
+            var keyItem = Output; //assign by output
 
             springStart = new DateTime(keyItem.Data.Year, springStart.Month, springStart.Day);
             summerStart = new DateTime(keyItem.Data.Year, summerStart.Month, summerStart.Day);
@@ -42,6 +42,17 @@ namespace WeatherDataReader
 
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(var i in Inputs)
+            {
+                sb.Append(i.ToInputString());
+            }
+            sb.Append(Output.ToOutputString());
+            return sb.ToString().TrimEnd(';');
+        }
+
 
         public static List<MeteoDataGroup> PrepareGroups(List<MetoData> ungrupedData, int inputSize)
         {
@@ -60,7 +71,7 @@ namespace WeatherDataReader
                 {
                     res.Add(group);
                     group.SetSeason();
-                    group.Output.PrepareOutput(false, group.Season); //TODO: Labelize output and inputs by param
+                    group.Output.PrepareOutput(false, group.Season);
                 }
                 else
                 {

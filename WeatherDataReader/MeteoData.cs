@@ -12,6 +12,14 @@ namespace WeatherDataReader
         Winter
     }
 
+    public enum LabelizationMode
+    {
+        None,
+        Input,
+        Output,
+        Both
+    }
+
     public class MetoData
     {
         public DateTime Data; //{ get; set; }

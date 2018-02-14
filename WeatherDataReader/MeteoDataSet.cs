@@ -11,9 +11,13 @@ namespace WeatherDataReader
 
         public List<MeteoDataGroup> TrainData { get; set; } = new List<MeteoDataGroup>();
         public List<MeteoDataGroup> TestData { get; set; } = new List<MeteoDataGroup>();
+        public Season Season { get; set; }
+        public LabelizationMode LabelizationMode { get; set; } = LabelizationMode.None;
 
-        public MeteoDataSet(List<MeteoDataGroup> allData)
+        public MeteoDataSet(List<MeteoDataGroup> allData, Season s)
         {
+            this.Season = s;
+
             int minYear = allData.Min(g => g.Output.Data.Year);
             int maxYear = allData.Max(g => g.Output.Data.Year);
 
@@ -46,6 +50,20 @@ namespace WeatherDataReader
                     throw new Exception("Error during drawing");
 
             }
+        }
+
+        public MeteoDataSet Labelize(LabelizationMode l)
+        {
+            this.LabelizationMode = l;
+            Labelizator labelizator = new Labelizator();
+            foreach(var item in TrainData)
+            {
+                if(LabelizationMode == LabelizationMode.Input || LabelizationMode == LabelizationMode.Both)
+                    labelizator.LabelizeInputs(item.Inputs, Season);
+                if (LabelizationMode == LabelizationMode.Output || LabelizationMode == LabelizationMode.Both)
+                    labelizator.LabelizeOutput(item.Output, Season);
+            }
+            return this;
         }
     }
 }
