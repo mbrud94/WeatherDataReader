@@ -27,22 +27,23 @@ namespace WeatherDataReader
 
             //SaveToLabelizedCsv(false); //only temp?
 
-
-            allItems = allItems.OrderBy(i => i.Data).ToList();
-            var groups = MeteoDataGroup.PrepareGroups(allItems, GROUP_SIZE);
-            MeteoDataSet springDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Spring).ToList(), Season.Spring);
-            MeteoDataSet summerDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Summer).ToList(), Season.Summer);
-            MeteoDataSet autumnDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Autumn).ToList(), Season.Autumn);
-            MeteoDataSet winterDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Winter).ToList(), Season.Winter);
-            List<MeteoDataSet> dataSets = new List<MeteoDataSet> { springDS, summerDS, autumnDS, winterDS };
-            foreach(var ds in dataSets)
+            for (int groupSize = 2; groupSize <= 5; groupSize++)
             {
-                CsvSaver.SaveDataSet(ds, path);
-                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Output), path);
-                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Input), path);
-                CsvSaver.SaveDataSet(ds.Labelize(LabelizationMode.Both), path);
+                allItems = allItems.OrderBy(i => i.Data).ToList();
+                var groups = MeteoDataGroup.PrepareGroups(allItems, groupSize);
+                MeteoDataSet springDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Spring).ToList(), Season.Spring);
+                MeteoDataSet summerDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Summer).ToList(), Season.Summer);
+                MeteoDataSet autumnDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Autumn).ToList(), Season.Autumn);
+                MeteoDataSet winterDS = new MeteoDataSet(groups.Where(g => g.Season == Season.Winter).ToList(), Season.Winter);
+                List<MeteoDataSet> dataSets = new List<MeteoDataSet> { springDS, summerDS, autumnDS, winterDS };
+                foreach (var ds in dataSets)
+                {
+                    CsvSaver.SaveDataSet(ds, path, LabelizationMode.None);
+                    CsvSaver.SaveDataSet(ds, path, LabelizationMode.Input);
+                    CsvSaver.SaveDataSet(ds, path, LabelizationMode.Output);
+                    CsvSaver.SaveDataSet(ds, path, LabelizationMode.Both);
+                }
             }
-
             //TODO: prapre CSV and labelization
 
 
@@ -70,7 +71,7 @@ namespace WeatherDataReader
         private static List<MeteoDataGroup> autumnItems = new List<MeteoDataGroup>();
         private static List<MeteoDataGroup> winterItems = new List<MeteoDataGroup>();
 
-        private static List<MetoData> allItems = new List<MetoData>();
+        private static List<MeteoData> allItems = new List<MeteoData>();
 
         private static int emptyRecords = 0;
 
@@ -109,7 +110,7 @@ namespace WeatherDataReader
 
         static void ReadFromHtml(int year, bool serialize)
         {
-            List<MetoData> data = new List<MetoData>();
+            List<MeteoData> data = new List<MeteoData>();
 
             foreach (var file in Directory.GetFiles($@"{path}{year}\OnlyTables"))
             {
@@ -125,7 +126,7 @@ namespace WeatherDataReader
                         {
                             continue;
                         }
-                        MetoData meteoRecord = new MetoData();
+                        MeteoData meteoRecord = new MeteoData();
 
                         bool save = true;
                         int cellIdx = 1;
@@ -180,7 +181,7 @@ namespace WeatherDataReader
             allItems.AddRange(data);
         }
 
-        private static void SaveToJson(List<MetoData> data, int year)
+        private static void SaveToJson(List<MeteoData> data, int year)
         {
             File.WriteAllText($@"{path}PreparedData\MeteoData_{year}.json", JsonConvert.SerializeObject(data, Formatting.Indented));
             /*using (StreamWriter file = File.CreateText($@"{path}{year}\data.json"))
@@ -257,7 +258,7 @@ namespace WeatherDataReader
             return ret;
         }
 
-        private static bool SaveCellValue(int cellIdx, MetoData row, string value)
+        private static bool SaveCellValue(int cellIdx, MeteoData row, string value)
         {
             //value = value.Replace('.', ',');
             value = value.Replace(',', '.');

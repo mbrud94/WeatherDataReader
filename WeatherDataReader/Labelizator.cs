@@ -6,49 +6,46 @@ namespace WeatherDataReader
 {
     public class Labelizator
     {
-        public void LabelizeInputs(List<MetoData> inputs, Season season)
-        {
-            foreach (var item in inputs)
-            {
-                double windDirection = Double.Parse(item.KierunekWiatru.Replace(".", ","));
-                item.KierunekWiatru = GetWindDirectionLabel(windDirection).ToString();
-
-                double windSpeed = Double.Parse(item.PredkoscWiatru.Replace(".", ","));
-                item.PredkoscWiatru = GetWindSpeedLabel(windSpeed).ToString();
-
-                double cloudy = Double.Parse(item.ZachmurzenieSr.Replace(".", ","));
-                item.ZachmurzenieSr = GetCloudyLabel(cloudy).ToString();
-
-                double rain = Double.Parse(item.Opad12h.Replace(".", ","));
-                item.Opad12h = GetRainLabel(rain).ToString();
-
-                double temp = Double.Parse(item.TempSr.Replace(".", ","));
-                item.TempSr = GetTempLabel(temp, season).ToString();
-
-                double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
-                item.CisnienieSrPoziomStacji = GetPreasureLabel(preasure).ToString();
-            }
-        }
-
-        public void LabelizeOutput(MetoData item, Season season)
+        public void LabelizeInput(MeteoData item, Season season)
         {
             double windDirection = Double.Parse(item.KierunekWiatru.Replace(".", ","));
-            item.KierunekWiatruWy = GetWindDirectionLabel(windDirection).ToString();
+            item.KierunekWiatruL = GetWindDirectionLabel(windDirection).ToString();
 
             double windSpeed = Double.Parse(item.PredkoscWiatru.Replace(".", ","));
-            item.PredkoscWiatruWy = GetWindSpeedLabel(windSpeed).ToString();
+            item.PredkoscWiatruL = GetWindSpeedLabel(windSpeed).ToString();
 
             double cloudy = Double.Parse(item.ZachmurzenieSr.Replace(".", ","));
-            item.ZachmurzenieSrWy = GetCloudyLabel(cloudy).ToString();
+            item.ZachmurzenieSrL = GetCloudyLabel(cloudy).ToString();
 
             double rain = Double.Parse(item.Opad12h.Replace(".", ","));
-            item.Opad12hWy = GetRainLabel(rain).ToString();
+            item.Opad12hL = GetRainLabel(rain).ToString();
 
             double temp = Double.Parse(item.TempSr.Replace(".", ","));
-            item.TempSrWy = GetTempLabel(temp, season).ToString();
+            item.TempSrL = GetTempLabel(temp, season).ToString();
 
             double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
-            item.CisnienieSrPoziomStacjiWy = GetPreasureLabel(preasure).ToString();
+            item.CisnienieSrPoziomStacjiL = GetPreasureLabel(preasure).ToString();
+        }
+
+        public void LabelizeOutput(MeteoData item, Season season)
+        {
+            double windDirection = Double.Parse(item.KierunekWiatru.Replace(".", ","));
+            item.KierunekWiatruWyL = GetWindDirectionLabel(windDirection).ToString();
+
+            double windSpeed = Double.Parse(item.PredkoscWiatru.Replace(".", ","));
+            item.PredkoscWiatruWyL = GetWindSpeedLabel(windSpeed).ToString();
+
+            double cloudy = Double.Parse(item.ZachmurzenieSr.Replace(".", ","));
+            item.ZachmurzenieSrWyL = GetCloudyLabel(cloudy).ToString();
+
+            double rain = Double.Parse(item.Opad12h.Replace(".", ","));
+            item.Opad12hWyL = GetRainLabel(rain).ToString();
+
+            double temp = Double.Parse(item.TempSr.Replace(".", ","));
+            item.TempSrWyL = GetTempLabel(temp, season).ToString();
+
+            double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
+            item.CisnienieSrPoziomStacjiWyL = GetPreasureLabel(preasure).ToString();
         }
 
         private int GetTempLabel(double temp, Season season)
