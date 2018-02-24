@@ -119,6 +119,60 @@ namespace WeatherDataReader
             new Labelizator().LabelizeOutput(this, season);
         }
 
+        public static string GetHeader(int groupSize)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < groupSize; i++)
+            {
+                sb.Append("TempMax")
+                    .Append(";")
+                    .Append("TempMin")
+                    .Append(";")
+                    .Append("TempSr")
+                    .Append(";")
+                    .Append("TempSrPunktuRosy")
+                    .Append(";")
+                    .Append("TempMinPrzyGruncie")
+                    .Append(";")
+                    .Append("TempMaxTermometruZwilzonego")
+                    .Append(";")
+                    .Append("AnomaliaTempMax")
+                    .Append(";")
+                    .Append("AnomaliaTempMin")
+                    .Append(";")
+                    .Append("AnomaliaTempSr")
+                    .Append(";")
+                    .Append("ZachmurzenieSr")
+                    .Append(";")
+                    .Append("PredkoscWiatru")
+                    .Append(";")
+                    .Append("KierunekWiatru")
+                    .Append(";")
+                    .Append("CisnienieSrPoziomMorza")
+                    .Append(";")
+                    .Append("CisnienieSrPoziomStacji")
+                    .Append(";")
+                    .Append("Opad12h")
+                    .Append(";")
+                    .Append("SrWidzialnoscPozioma")
+                    .Append(";");
+                    
+            }
+            sb.Append("TempSrWy")
+              .Append(";")
+              .Append("ZachmurzenieSrWy")
+              .Append(";")
+              .Append("PredkoscWiatruWy")
+              .Append(";")
+              .Append("KierunekWiatruWy")
+              .Append(";")
+              .Append("CisnienieSrPoziomStacjiWy")
+              .Append(";")
+              .Append("Opad12hWy");
+
+            return sb.ToString();
+        }
+
         public string ToInputString(bool labelize)
         {
             StringBuilder sb = new StringBuilder();

@@ -13,8 +13,8 @@ namespace WeatherDataReader
 
     class Program
     {
-        static string path = $@"D:\Studia\Mgr\Meteodata\";
-        static int GROUP_SIZE = 2;
+        static string path = $@"C:\Users\Mateusz\Desktop\Meteodata\"; //$@"D:\Studia\Mgr\Meteodata\";
+        //static int GROUP_SIZE = 2;
 
         static void Main(string[] args)
         {
@@ -78,7 +78,7 @@ namespace WeatherDataReader
         static void Read(int year)
         {
             //PrepareFile(year);
-            ReadFromHtml(year, true);
+            ReadFromHtml(year, false);
         }
 
         static void PrepareFile(int year)

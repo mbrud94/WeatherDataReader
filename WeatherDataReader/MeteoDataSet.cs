@@ -30,7 +30,7 @@ namespace WeatherDataReader
                 int idx = rand.Next(0, yearDataCount);
 
                 List<int> drawIndexes = new List<int>();
-                while(drawIndexes.Count <= testDataSize)
+                while(drawIndexes.Count < testDataSize)
                 {
                     if(!drawIndexes.Contains(idx))
                     {
