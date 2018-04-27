@@ -13,7 +13,7 @@ namespace WeatherDataReader
 
     class Program
     {
-        static string path = $@"C:\Users\Mateusz\Desktop\Meteodata\"; //$@"D:\Studia\Mgr\Meteodata\";
+        static string path =  $@"D:\Studia\Mgr\Meteodata\"; //$@"C:\Users\Mateusz\Desktop\Meteodata\";
         //static int GROUP_SIZE = 2;
 
         static void Main(string[] args)
@@ -27,7 +27,7 @@ namespace WeatherDataReader
 
             //SaveToLabelizedCsv(false); //only temp?
 
-            for (int groupSize = 2; groupSize <= 5; groupSize++)
+            for (int groupSize = 1; groupSize <= 5; groupSize++)
             {
                 allItems = allItems.OrderBy(i => i.Data).ToList();
                 var groups = MeteoDataGroup.PrepareGroups(allItems, groupSize);
@@ -46,21 +46,24 @@ namespace WeatherDataReader
             }
             //TODO: prapre CSV and labelization
 
+            //Console.WriteLine($"Min spring avg temp : {allItems.Max(i => Double.Parse(i.TempSr.Replace('.', ',')))}");
+            //Console.WriteLine($"Min spring avg temp : {allItems.Max(i => Double.Parse(i.TempMin.Replace('.', ',')))}");
+            //Console.WriteLine($"Min spring avg temp : {allItems.Max(i => Double.Parse(i.TempMax.Replace('.', ',')))}");
 
-            /*Console.WriteLine($"Max wind speed : {allItems.Max(i => Double.Parse(i.PredkoscWiatru.Replace('.',',')))}");
-            Console.WriteLine($"Min wind speed : {allItems.Min(i => Double.Parse(i.PredkoscWiatru.Replace('.', ',')))}");
-            Console.WriteLine($"Max pressure : {allItems.Max(i => Double.Parse(i.CisnienieSrPoziomStacji.Replace('.', ',')))}");
-            Console.WriteLine($"Min pressure : {allItems.Min(i => Double.Parse(i.CisnienieSrPoziomStacji.Replace('.', ',')))}");
-            Console.WriteLine($"Max rain : {allItems.Max(i => Double.Parse(i.Opad12h.Replace('.',',')))}");
-            Console.WriteLine($"Min rain : {allItems.Min(i => Double.Parse(i.Opad12h.Replace('.', ',')))}");
-            Console.WriteLine($"Min spring avg temp : {springItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Max spring avg temp : {springItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Min summer avg temp : {summerItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Max summer avg temp : {summerItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Min autumn avg temp : {autumnItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Max autumn avg temp : {autumnItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Min winter avg temp : {winterItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
-            Console.WriteLine($"Max winter avg temp : {winterItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");*/
+            //Console.WriteLine($"Max wind speed : {allItems.Max(i => Double.Parse(i.PredkoscWiatru.Replace('.',',')))}");
+            //Console.WriteLine($"Min wind speed : {allItems.Min(i => Double.Parse(i.PredkoscWiatru.Replace('.', ',')))}");
+            //Console.WriteLine($"Max pressure : {allItems.Max(i => Double.Parse(i.CisnienieSrPoziomStacji.Replace('.', ',')))}");
+            //Console.WriteLine($"Min pressure : {allItems.Min(i => Double.Parse(i.CisnienieSrPoziomStacji.Replace('.', ',')))}");
+            //Console.WriteLine($"Max rain : {allItems.Max(i => Double.Parse(i.Opad12h.Replace('.',',')))}");
+            //Console.WriteLine($"Min rain : {allItems.Min(i => Double.Parse(i.Opad12h.Replace('.', ',')))}");
+            //Console.WriteLine($"Min spring avg temp : {springItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Max spring avg temp : {springItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Min summer avg temp : {summerItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Max summer avg temp : {summerItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Min autumn avg temp : {autumnItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Max autumn avg temp : {autumnItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Min winter avg temp : {winterItems.Min(i => Double.Parse(i.TempSr.Replace('.',',')))}");
+            //Console.WriteLine($"Max winter avg temp : {winterItems.Max(i => Double.Parse(i.TempSr.Replace('.',',')))}");
             Console.WriteLine($"Empty records : {emptyRecords}");
             Console.WriteLine("Done!");
             Console.ReadLine();

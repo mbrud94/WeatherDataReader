@@ -25,6 +25,8 @@ namespace WeatherDataReader
         public DateTime Data { get; set; }
         public string TempMax { get; set; }
         public string TempMin { get; set; }
+        public string TempMaxL { get; set; }
+        public string TempMinL { get; set; }
         public string TempSr { get; set; }
         public string TempSrL { get; set; }
         public string TempSrPunktuRosy { get; set; }
@@ -60,6 +62,8 @@ namespace WeatherDataReader
         public string KierunekWiatruWy { get; set; }
         public string CisnienieSrPoziomStacjiWy { get; set; }
         public string Opad12hWy { get; set; }
+        public string TempMaxWy { get; set; }
+        public string TempMinWy { get; set; }
 
         public string TempSrWyL { get; set; }
         public string ZachmurzenieSrWyL { get; set; }
@@ -67,6 +71,8 @@ namespace WeatherDataReader
         public string KierunekWiatruWyL { get; set; }
         public string CisnienieSrPoziomStacjiWyL { get; set; }
         public string Opad12hWyL { get; set; }
+        public string TempMaxWyL { get; set; }
+        public string TempMinWyL { get; set; }
 
         public MeteoData()
         {
@@ -115,6 +121,8 @@ namespace WeatherDataReader
             ZachmurzenieSrWy = ZachmurzenieSr;
             Opad12hWy = Opad12h;
             TempSrWy = TempSr;
+            TempMaxWy = TempMax;
+            TempMinWy = TempMin;
             CisnienieSrPoziomStacjiWy = CisnienieSrPoziomStacji;
             new Labelizator().LabelizeOutput(this, season);
         }
@@ -130,35 +138,39 @@ namespace WeatherDataReader
                     .Append(";")
                     .Append("TempSr")
                     .Append(";")
-                    .Append("TempSrPunktuRosy")
-                    .Append(";")
-                    .Append("TempMinPrzyGruncie")
-                    .Append(";")
-                    .Append("TempMaxTermometruZwilzonego")
-                    .Append(";")
-                    .Append("AnomaliaTempMax")
-                    .Append(";")
-                    .Append("AnomaliaTempMin")
-                    .Append(";")
-                    .Append("AnomaliaTempSr")
-                    .Append(";")
+                    //.Append("TempSrPunktuRosy")                 //
+                    //.Append(";")                                //
+                    //.Append("TempMinPrzyGruncie")               //
+                    //.Append(";")                                //
+                    //.Append("TempMaxTermometruZwilzonego")      //
+                    //.Append(";")                                //
+                    //.Append("AnomaliaTempMax")                  //
+                    //.Append(";")                                //
+                    //.Append("AnomaliaTempMin")                  //
+                    //.Append(";")                                //
+                    //.Append("AnomaliaTempSr")                   //
+                    //.Append(";")                                //
                     .Append("ZachmurzenieSr")
                     .Append(";")
                     .Append("PredkoscWiatru")
                     .Append(";")
                     .Append("KierunekWiatru")
                     .Append(";")
-                    .Append("CisnienieSrPoziomMorza")
-                    .Append(";")
+                    //.Append("CisnienieSrPoziomMorza")//
+                    //.Append(";")                     //
                     .Append("CisnienieSrPoziomStacji")
                     .Append(";")
                     .Append("Opad12h")
-                    .Append(";")
-                    .Append("SrWidzialnoscPozioma")
                     .Append(";");
+                    //.Append("SrWidzialnoscPozioma")//
+                    //.Append(";");                  //
                     
             }
-            sb.Append("TempSrWy")
+            sb.Append("TempMaxWy")
+              .Append(";")
+              .Append("TempMinWy")
+              .Append(";")
+              .Append("TempSrWy")
               .Append(";")
               .Append("ZachmurzenieSrWy")
               .Append(";")
@@ -176,38 +188,38 @@ namespace WeatherDataReader
         public string ToInputString(bool labelize)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(TempMax)
+            sb.Append(labelize ? TempMaxL : TempMax)
                 .Append(";")
-                .Append(TempMin)
+                .Append(labelize ? TempMinL : TempMin)
                 .Append(";")
                 .Append(labelize ? TempSrL : TempSr)
                 .Append(";")
-                .Append(TempSrPunktuRosy)
-                .Append(";")
-                .Append(TempMinPrzyGruncie)
-                .Append(";")
-                .Append(TempMaxTermometruZwilzonego)
-                .Append(";")
-                .Append(AnomaliaTempMax)
-                .Append(";")
-                .Append(AnomaliaTempMin)
-                .Append(";")
-                .Append(AnomaliaTempSr)
-                .Append(";")
+                //.Append(TempSrPunktuRosy)              // 
+                //.Append(";")                           //
+                //.Append(TempMinPrzyGruncie)            //
+                //.Append(";")                           //
+                //.Append(TempMaxTermometruZwilzonego)   //
+                //.Append(";")                           //
+                //.Append(AnomaliaTempMax)               //
+                //.Append(";")                           //
+                //.Append(AnomaliaTempMin)               //
+                //.Append(";")                           //
+                //.Append(AnomaliaTempSr)                //
+                //.Append(";")                           //
                 .Append(labelize ? ZachmurzenieSrL : ZachmurzenieSr)
                 .Append(";")
                 .Append(labelize ? PredkoscWiatruL : PredkoscWiatru)
                 .Append(";")
                 .Append(labelize ? KierunekWiatruL : KierunekWiatru)
                 .Append(";")
-                .Append(CisnienieSrPoziomMorza)
-                .Append(";")
+                //.Append(CisnienieSrPoziomMorza)     //
+                //.Append(";")                        //
                 .Append(labelize ? CisnienieSrPoziomStacjiL : CisnienieSrPoziomStacji)
                 .Append(";")
                 .Append(labelize ? Opad12hL : Opad12h)
-                .Append(";")
-                .Append(SrWidzialnoscPozioma)
                 .Append(";");
+                //.Append(SrWidzialnoscPozioma) //
+                //.Append(";");                 //
 
             return sb.ToString();
         }
@@ -217,7 +229,11 @@ namespace WeatherDataReader
             StringBuilder sb = new StringBuilder();
             if (!labelize)
             {
-                sb.Append(TempSrWy)
+                sb.Append(TempMaxWy)
+                    .Append(";")
+                    .Append(TempMinWy)
+                    .Append(";")
+                    .Append(TempSrWy)
                     .Append(";")
                     .Append(ZachmurzenieSrWy)
                     .Append(";")
@@ -232,7 +248,11 @@ namespace WeatherDataReader
             }
             else
             {
-                sb.Append(TempSrWyL)
+                sb.Append(TempMaxWyL)
+                    .Append(";")
+                    .Append(TempMinWyL)
+                    .Append(";")
+                    .Append(TempSrWyL)
                     .Append(";")
                     .Append(ZachmurzenieSrWyL)
                     .Append(";")

@@ -23,6 +23,12 @@ namespace WeatherDataReader
             double temp = Double.Parse(item.TempSr.Replace(".", ","));
             item.TempSrL = GetTempLabel(temp, season).ToString();
 
+            double tempMin = Double.Parse(item.TempMin.Replace(".", ","));
+            item.TempMinL = GetTempMinLabel(tempMin, season).ToString();
+
+            double tempMax = Double.Parse(item.TempMax.Replace(".", ","));
+            item.TempMaxL = GetTempMaxLabel(tempMax, season).ToString();
+
             double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
             item.CisnienieSrPoziomStacjiL = GetPreasureLabel(preasure).ToString();
         }
@@ -43,6 +49,12 @@ namespace WeatherDataReader
 
             double temp = Double.Parse(item.TempSr.Replace(".", ","));
             item.TempSrWyL = GetTempLabel(temp, season).ToString();
+
+            double tempMin = Double.Parse(item.TempMin.Replace(".", ","));
+            item.TempMinWyL = GetTempMinLabel(tempMin, season).ToString();
+
+            double tempMax = Double.Parse(item.TempMax.Replace(".", ","));
+            item.TempMaxWyL = GetTempMaxLabel(tempMax, season).ToString();
 
             double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
             item.CisnienieSrPoziomStacjiWyL = GetPreasureLabel(preasure).ToString();
@@ -82,6 +94,88 @@ namespace WeatherDataReader
                     if (temp >= -10 && temp < 0)
                         return 2;
                     if (temp >= 0)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                default:
+                    throw new Exception("Invalid Season");
+            }
+        }
+
+        private int GetTempMinLabel(double temp, Season season)
+        {
+            switch (season)
+            {
+                case Season.Spring:
+                    if (temp < 0)
+                        return 1;
+                    if (temp >= 0 && temp < 10)
+                        return 2;
+                    if (temp >= 10)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Summer:
+                    if (temp < 5)
+                        return 1;
+                    if (temp >= 5 && temp < 15)
+                        return 2;
+                    if (temp >= 15)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Autumn:
+                    if (temp < -5)
+                        return 1;
+                    if (temp >= -5 && temp < 5)
+                        return 2;
+                    if (temp >= 5)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Winter:
+                    if (temp < -15)
+                        return 1;
+                    if (temp >= -15 && temp < -5)
+                        return 2;
+                    if (temp >= -5)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                default:
+                    throw new Exception("Invalid Season");
+            }
+        }
+
+        private int GetTempMaxLabel(double temp, Season season)
+        {
+            switch (season)
+            {
+                case Season.Spring:
+                    if (temp < 10)
+                        return 1;
+                    if (temp >= 10 && temp < 20)
+                        return 2;
+                    if (temp >= 20)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Summer:
+                    if (temp < 15)
+                        return 1;
+                    if (temp >= 15 && temp < 25)
+                        return 2;
+                    if (temp >= 25)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Autumn:
+                    if (temp < 5)
+                        return 1;
+                    if (temp >= 5 && temp < 15)
+                        return 2;
+                    if (temp >= 15)
+                        return 3;
+                    throw new Exception("Invalid Temp");
+                case Season.Winter:
+                    if (temp < -5)
+                        return 1;
+                    if (temp >= -5 && temp < 5)
+                        return 2;
+                    if (temp >= 5)
                         return 3;
                     throw new Exception("Invalid Temp");
                 default:
