@@ -19,23 +19,23 @@ namespace WeatherDataReader
 
             var keyItem = Output; //assign by output
 
-            springStart = new DateTime(keyItem.Data.Year, springStart.Month, springStart.Day);
-            summerStart = new DateTime(keyItem.Data.Year, summerStart.Month, summerStart.Day);
-            autumnStart = new DateTime(keyItem.Data.Year, autumnStart.Month, autumnStart.Day);
-            winterStart = new DateTime(keyItem.Data.Year, winterStart.Month, winterStart.Day);
-            if (keyItem.Data >= springStart && keyItem.Data < summerStart)
+            springStart = new DateTime(keyItem.Date.Year, springStart.Month, springStart.Day);
+            summerStart = new DateTime(keyItem.Date.Year, summerStart.Month, summerStart.Day);
+            autumnStart = new DateTime(keyItem.Date.Year, autumnStart.Month, autumnStart.Day);
+            winterStart = new DateTime(keyItem.Date.Year, winterStart.Month, winterStart.Day);
+            if (keyItem.Date >= springStart && keyItem.Date < summerStart)
             {
                 Season = Season.Spring;
             }
-            else if (keyItem.Data >= summerStart && keyItem.Data < autumnStart)
+            else if (keyItem.Date >= summerStart && keyItem.Date < autumnStart)
             {
                 Season = Season.Summer;
             }
-            else if (keyItem.Data >= autumnStart && keyItem.Data < winterStart)
+            else if (keyItem.Date >= autumnStart && keyItem.Date < winterStart)
             {
                 Season = Season.Autumn;
             }
-            else if (keyItem.Data >= winterStart || keyItem.Data < springStart)
+            else if (keyItem.Date >= winterStart || keyItem.Date < springStart)
             {
                 Season = Season.Winter;
             }
@@ -91,13 +91,13 @@ namespace WeatherDataReader
             MeteoData prevInput = group.Inputs[0];
             for(int i = 1; i < group.Inputs.Count; i++)
             {
-                if (prevInput.Data.AddDays(1) != group.Inputs[i].Data)
+                if (prevInput.Date.AddDays(1) != group.Inputs[i].Date)
                 {
                     return false;
                 }
                 prevInput = group.Inputs[i];
             }
-            if (prevInput.Data.AddDays(1) != group.Output.Data)
+            if (prevInput.Date.AddDays(1) != group.Output.Date)
             {
                 return false;
             }

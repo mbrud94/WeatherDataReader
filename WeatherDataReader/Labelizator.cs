@@ -8,56 +8,26 @@ namespace WeatherDataReader
     {
         public void LabelizeInput(MeteoData item, Season season)
         {
-            double windDirection = Double.Parse(item.KierunekWiatru.Replace(".", ","));
-            item.KierunekWiatruL = GetWindDirectionLabel(windDirection).ToString();
-
-            double windSpeed = Double.Parse(item.PredkoscWiatru.Replace(".", ","));
-            item.PredkoscWiatruL = GetWindSpeedLabel(windSpeed).ToString();
-
-            double cloudy = Double.Parse(item.ZachmurzenieSr.Replace(".", ","));
-            item.ZachmurzenieSrL = GetCloudyLabel(cloudy).ToString();
-
-            double rain = Double.Parse(item.Opad12h.Replace(".", ","));
-            item.Opad12hL = GetRainLabel(rain).ToString();
-
-            double temp = Double.Parse(item.TempSr.Replace(".", ","));
-            item.TempSrL = GetTempLabel(temp, season).ToString();
-
-            double tempMin = Double.Parse(item.TempMin.Replace(".", ","));
-            item.TempMinL = GetTempMinLabel(tempMin, season).ToString();
-
-            double tempMax = Double.Parse(item.TempMax.Replace(".", ","));
-            item.TempMaxL = GetTempMaxLabel(tempMax, season).ToString();
-
-            double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
-            item.CisnienieSrPoziomStacjiL = GetPreasureLabel(preasure).ToString();
+            item.WindDirectionL = GetWindDirectionLabel(item.WindDirection);
+            item.WindSpeedL = GetWindSpeedLabel(item.WindSpeed);
+            item.CloudyAvgL = GetCloudyLabel(item.CloudyAvg);
+            item.Rain12hL = GetRainLabel(item.Rain12h);
+            item.TempAvgL = GetTempLabel(item.TempAvg, season);
+            item.TempMinL = GetTempMinLabel(item.TempMin, season);
+            item.TempMaxL = GetTempMaxLabel(item.TempMax, season);
+            item.PressureStationLevelL = GetPreasureLabel(item.PressureStationLevel);
         }
 
         public void LabelizeOutput(MeteoData item, Season season)
         {
-            double windDirection = Double.Parse(item.KierunekWiatru.Replace(".", ","));
-            item.KierunekWiatruWyL = GetWindDirectionLabel(windDirection).ToString();
-
-            double windSpeed = Double.Parse(item.PredkoscWiatru.Replace(".", ","));
-            item.PredkoscWiatruWyL = GetWindSpeedLabel(windSpeed).ToString();
-
-            double cloudy = Double.Parse(item.ZachmurzenieSr.Replace(".", ","));
-            item.ZachmurzenieSrWyL = GetCloudyLabel(cloudy).ToString();
-
-            double rain = Double.Parse(item.Opad12h.Replace(".", ","));
-            item.Opad12hWyL = GetRainLabel(rain).ToString();
-
-            double temp = Double.Parse(item.TempSr.Replace(".", ","));
-            item.TempSrWyL = GetTempLabel(temp, season).ToString();
-
-            double tempMin = Double.Parse(item.TempMin.Replace(".", ","));
-            item.TempMinWyL = GetTempMinLabel(tempMin, season).ToString();
-
-            double tempMax = Double.Parse(item.TempMax.Replace(".", ","));
-            item.TempMaxWyL = GetTempMaxLabel(tempMax, season).ToString();
-
-            double preasure = Double.Parse(item.CisnienieSrPoziomStacji.Replace(".", ","));
-            item.CisnienieSrPoziomStacjiWyL = GetPreasureLabel(preasure).ToString();
+            item.WindDirectionOutL = GetWindDirectionLabel(item.WindDirection);
+            item.WindSpeedOutL = GetWindSpeedLabel(item.WindSpeed);
+            item.CloudyAvgOutL = GetCloudyLabel(item.CloudyAvg);
+            item.Rain12hOutL = GetRainLabel(item.Rain12h);
+            item.TempAvgOutL = GetTempLabel(item.TempAvg, season);
+            item.TempMinOutL = GetTempMinLabel(item.TempMin, season);
+            item.TempMaxOutL = GetTempMaxLabel(item.TempMax, season);
+            item.PressureStationLevelOutL = GetPreasureLabel(item.PressureStationLevel);
         }
 
         private int GetTempLabel(double temp, Season season)

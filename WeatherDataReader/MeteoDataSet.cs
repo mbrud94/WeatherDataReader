@@ -17,12 +17,12 @@ namespace WeatherDataReader
         {
             this.Season = s;
 
-            int minYear = allData.Min(g => g.Output.Data.Year);
-            int maxYear = allData.Max(g => g.Output.Data.Year);
+            int minYear = allData.Min(g => g.Output.Date.Year);
+            int maxYear = allData.Max(g => g.Output.Date.Year);
 
             for (int year = minYear; year <= maxYear; year++)
             {
-                var yearRecords = allData.Where(g => g.Output.Data.Year == year);
+                var yearRecords = allData.Where(g => g.Output.Date.Year == year);
                 int yearDataCount = yearRecords.Count();
                 int testDataSize = (int)(TEST_DATA_COUNT * yearDataCount);
 

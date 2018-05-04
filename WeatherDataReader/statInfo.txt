@@ -1,0 +1,54 @@
+Wiosna
+Temperatura maksymalna	33		-4,5	18,24
+Temperatura minimalna	19,5	-19,4	6,72
+Temperatura średnia		25,8	-10,8	12,37
+Zachmurzenie			8		0		4,82
+Prędkość wiatru			10		0,5		3,32
+Kierunek wiatru			359,91	0		179,98
+Ciśnienie				1008,3	963,4	989,82
+Opad 					69		0		2,18
+Lato
+Temperatura maksymalna	36,1	8		24,20
+Temperatura minimalna	21,2	-0,9	12,63
+Temperatura średnia		28		6,9		18,18
+Zachmurzenie			8		0		4,47
+Prędkość wiatru			13,8	0,4		2,91
+Kierunek wiatru			359,96	0		187,31
+Ciśnienie				1004,3	974,1	990,59
+Opad 					60		0		2,58
+Jesień
+Temperatura maksymalna	28,9	-13		9,71
+Temperatura minimalna	16,5	-22,6	2,45
+Temperatura średnia		21,6	-15,2	5,83
+Zachmurzenie			8		0		5,57
+Prędkość wiatru			13,8	0,1		3,89
+Kierunek wiatru			359,94	0		224,41
+Ciśnienie				1017,4	963		992,74
+Opad 					33		0		1,30
+Zima
+Temperatura maksymalna	30,4	-18,8	2,72
+Temperatura minimalna	9,1		-30		-3,65
+Temperatura średnia		14		-24,6	-0,54
+Zachmurzenie			8		0		5,87
+Prędkość wiatru			15,4	0,2		4,35
+Kierunek wiatru			359,95	0		219,07
+Ciśnienie				1020	956,4	991,55
+Opad 					19		0		1,25
+Wszystko
+Temperatura maksymalna	36,1	-18,8	13,94
+Temperatura minimalna	21,2	-30		4,69
+Temperatura średnia		28		-24,6	9,15
+Zachmurzenie			8		0		5,17
+Prędkość wiatru			15,4	0,1		3,60
+Kierunek wiatru			359,96	0		202,20
+Ciśnienie				1020	956,4	991,15
+Opad 					69		0		1,84
+
+
+1652
+1661
+1586
+1554
+6453
+
+Empty - 126

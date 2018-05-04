@@ -22,57 +22,63 @@ namespace WeatherDataReader
 
     public class MeteoData
     {
-        public DateTime Data { get; set; }
-        public string TempMax { get; set; }
-        public string TempMin { get; set; }
-        public string TempMaxL { get; set; }
-        public string TempMinL { get; set; }
-        public string TempSr { get; set; }
-        public string TempSrL { get; set; }
-        public string TempSrPunktuRosy { get; set; }
-        public string TempMinPrzyGruncie { get; set; }
-        public string TempMaxTermometruZwilzonego { get; set; }
-        public string AnomaliaTempMax { get; set; }
-        public string AnomaliaTempMin { get; set; }
-        public string AnomaliaTempSr { get; set; }
-        public string ZachmurzenieSr { get; set; }
-        public string PredkoscWiatru { get; set; }
-        public string KierunekWiatru { get; set; }
-        public string ZachmurzenieSrL { get; set; }
-        public string PredkoscWiatruL { get; set; }
-        public string KierunekWiatruL { get; set; }
-        //public string MaksymalnyPorywWiatru { get; set; }
-        public string CisnienieSrPoziomMorza { get; set; }
-        public string CisnienieSrPoziomStacji { get; set; }
-        public string CisnienieSrPoziomStacjiL { get; set; }
-        //public string OpadDobowy { get; set; }
-        public string Opad12h { get; set; }
-        public string Opad12hL { get; set; }
-        public string SrWidzialnoscPozioma { get; set; }
-        //public string Uslonecznienie { get; set; }
-        //public string WysokoscPokrywySnieznej { get; set; }
-        //public string Burza { get; set; }
-        //public string Deszcz { get; set; }
-        //public string Snieg { get; set; }
-        //public string Mgla { get; set; }
+        public DateTime Date { get; set; }
 
-        public string TempSrWy { get; set; }
-        public string ZachmurzenieSrWy { get; set; }
-        public string PredkoscWiatruWy { get; set; }
-        public string KierunekWiatruWy { get; set; }
-        public string CisnienieSrPoziomStacjiWy { get; set; }
-        public string Opad12hWy { get; set; }
-        public string TempMaxWy { get; set; }
-        public string TempMinWy { get; set; }
 
-        public string TempSrWyL { get; set; }
-        public string ZachmurzenieSrWyL { get; set; }
-        public string PredkoscWiatruWyL { get; set; }
-        public string KierunekWiatruWyL { get; set; }
-        public string CisnienieSrPoziomStacjiWyL { get; set; }
-        public string Opad12hWyL { get; set; }
-        public string TempMaxWyL { get; set; }
-        public string TempMinWyL { get; set; }
+        public double TempMax { get; set; }
+        public double TempMin { get; set; }
+        public double TempAvg { get; set; }
+        public double CloudyAvg { get; set; }
+        public double WindSpeed { get; set; }
+        public double WindDirection { get; set; }
+        public double PressureStationLevel { get; set; }
+        public double Rain12h { get; set; }
+
+        public int TempMaxL { get; set; }
+        public int TempMinL { get; set; }
+        public int TempAvgL { get; set; }
+        public int CloudyAvgL { get; set; }
+        public int WindSpeedL { get; set; }
+        public int WindDirectionL { get; set; }
+        public int PressureStationLevelL { get; set; }
+        public int Rain12hL { get; set; }
+
+        public double TempMaxOut { get; set; }
+        public double TempMinOut { get; set; }
+        public double TempAvgOut { get; set; }
+        public double CloudyAvgOut { get; set; }
+        public double WindSpeedOut { get; set; }
+        public double WindDirectionOut { get; set; }
+        public double PressureStationLevelOut { get; set; }
+        public double Rain12hOut { get; set; }
+
+        public int TempMaxOutL { get; set; }
+        public int TempMinOutL { get; set; }
+        public int TempAvgOutL { get; set; }
+        public int CloudyAvgOutL { get; set; }
+        public int WindSpeedOutL { get; set; }
+        public int WindDirectionOutL { get; set; }
+        public int PressureStationLevelOutL { get; set; }
+        public int Rain12hOutL { get; set; }
+
+        //unused properties
+        public double DevPointTempAvg { get; set; }
+        public double GroundTempMin { get; set; }
+        public double WettedThermMaxTemp { get; set; }
+        public double TempMaxAnomaly { get; set; }
+        public double TempMinAnomaly { get; set; }
+        public double TempMAvgAnomaly { get; set; }
+        public double MaxWindGust { get; set; }
+        public double PressureSeeLevel { get; set; }
+        public double Rain24h { get; set; }
+        public double AvgVisibility { get; set; }
+        public double Insolation { get; set; }
+        public double IceSheetHeight { get; set; }
+        public bool Storm { get; set; }
+        public bool Rain { get; set; }
+        public bool Snow { get; set; }
+        public bool Fog { get; set; }
+
 
         public MeteoData()
         {
@@ -81,23 +87,23 @@ namespace WeatherDataReader
 
         public MeteoData(MeteoData rec)
         {
-            this.Data = rec.Data;
+            this.Date = rec.Date;
             this.TempMax = rec.TempMax;
             this.TempMin = rec.TempMin;
-            this.TempSr = rec.TempSr;
-            this.TempSrPunktuRosy = rec.TempSrPunktuRosy;
-            this.TempMinPrzyGruncie = rec.TempMinPrzyGruncie;
-            this.TempMaxTermometruZwilzonego = rec.TempMaxTermometruZwilzonego;
-            this.AnomaliaTempMax = rec.AnomaliaTempMax;
-            this.AnomaliaTempMin = rec.AnomaliaTempMin;
-            this.AnomaliaTempSr = rec.AnomaliaTempSr;
-            this.ZachmurzenieSr = rec.ZachmurzenieSr;
-            this.PredkoscWiatru = rec.PredkoscWiatru;
-            this.KierunekWiatru = rec.KierunekWiatru;
-            this.CisnienieSrPoziomMorza = rec.CisnienieSrPoziomMorza;
-            this.CisnienieSrPoziomStacji = rec.CisnienieSrPoziomStacji;
-            this.Opad12h = rec.Opad12h;
-            this.SrWidzialnoscPozioma = rec.SrWidzialnoscPozioma;
+            this.TempAvg = rec.TempAvg;
+            this.DevPointTempAvg = rec.DevPointTempAvg;
+            this.GroundTempMin = rec.GroundTempMin;
+            this.WettedThermMaxTemp = rec.WettedThermMaxTemp;
+            this.TempMaxAnomaly = rec.TempMaxAnomaly;
+            this.TempMinAnomaly = rec.TempMinAnomaly;
+            this.TempMAvgAnomaly = rec.TempMAvgAnomaly;
+            this.CloudyAvg = rec.CloudyAvg;
+            this.WindSpeed = rec.WindSpeed;
+            this.WindDirection = rec.WindDirection;
+            this.PressureSeeLevel = rec.PressureSeeLevel;
+            this.PressureStationLevel = rec.PressureStationLevel;
+            this.Rain12h = rec.Rain12h;
+            this.AvgVisibility = rec.AvgVisibility;
 
             //LabelizeInput(s);
             //PrepareOutput(s);
@@ -116,14 +122,14 @@ namespace WeatherDataReader
 
         private void PrepareOutput(Season season)
         {
-            KierunekWiatruWy = KierunekWiatru;
-            PredkoscWiatruWy = PredkoscWiatru;
-            ZachmurzenieSrWy = ZachmurzenieSr;
-            Opad12hWy = Opad12h;
-            TempSrWy = TempSr;
-            TempMaxWy = TempMax;
-            TempMinWy = TempMin;
-            CisnienieSrPoziomStacjiWy = CisnienieSrPoziomStacji;
+            WindDirectionOut = WindDirection;
+            WindSpeedOut = WindSpeed;
+            CloudyAvgOut = CloudyAvg;
+            Rain12hOut = Rain12h;
+            TempAvgOut = TempAvg;
+            TempMaxOut = TempMax;
+            TempMinOut = TempMin;
+            PressureStationLevelOut = PressureStationLevel;
             new Labelizator().LabelizeOutput(this, season);
         }
 
@@ -192,7 +198,7 @@ namespace WeatherDataReader
                 .Append(";")
                 .Append(labelize ? TempMinL : TempMin)
                 .Append(";")
-                .Append(labelize ? TempSrL : TempSr)
+                .Append(labelize ? TempAvgL : TempAvg)
                 .Append(";")
                 //.Append(TempSrPunktuRosy)              // 
                 //.Append(";")                           //
@@ -206,17 +212,17 @@ namespace WeatherDataReader
                 //.Append(";")                           //
                 //.Append(AnomaliaTempSr)                //
                 //.Append(";")                           //
-                .Append(labelize ? ZachmurzenieSrL : ZachmurzenieSr)
+                .Append(labelize ? CloudyAvgL : CloudyAvg)
                 .Append(";")
-                .Append(labelize ? PredkoscWiatruL : PredkoscWiatru)
+                .Append(labelize ? WindSpeedL : WindSpeed)
                 .Append(";")
-                .Append(labelize ? KierunekWiatruL : KierunekWiatru)
+                .Append(labelize ? WindDirectionL : WindDirection)
                 .Append(";")
                 //.Append(CisnienieSrPoziomMorza)     //
                 //.Append(";")                        //
-                .Append(labelize ? CisnienieSrPoziomStacjiL : CisnienieSrPoziomStacji)
+                .Append(labelize ? PressureStationLevelL : PressureStationLevel)
                 .Append(";")
-                .Append(labelize ? Opad12hL : Opad12h)
+                .Append(labelize ? Rain12hL : Rain12h)
                 .Append(";");
                 //.Append(SrWidzialnoscPozioma) //
                 //.Append(";");                 //
@@ -229,40 +235,40 @@ namespace WeatherDataReader
             StringBuilder sb = new StringBuilder();
             if (!labelize)
             {
-                sb.Append(TempMaxWy)
+                sb.Append(TempMaxOut)
                     .Append(";")
-                    .Append(TempMinWy)
+                    .Append(TempMinOut)
                     .Append(";")
-                    .Append(TempSrWy)
+                    .Append(TempAvgOut)
                     .Append(";")
-                    .Append(ZachmurzenieSrWy)
+                    .Append(CloudyAvgOut)
                     .Append(";")
-                    .Append(PredkoscWiatruWy)
+                    .Append(WindSpeedOut)
                     .Append(";")
-                    .Append(KierunekWiatruWy)
+                    .Append(WindDirectionOut)
                     .Append(";")
-                    .Append(CisnienieSrPoziomStacjiWy)
+                    .Append(PressureStationLevelOut)
                     .Append(";")
-                    .Append(Opad12hWy)
+                    .Append(Rain12hOut)
                     .Append(";");
             }
             else
             {
-                sb.Append(TempMaxWyL)
+                sb.Append(TempMaxOutL)
                     .Append(";")
-                    .Append(TempMinWyL)
+                    .Append(TempMinOutL)
                     .Append(";")
-                    .Append(TempSrWyL)
+                    .Append(TempAvgOutL)
                     .Append(";")
-                    .Append(ZachmurzenieSrWyL)
+                    .Append(CloudyAvgOut)
                     .Append(";")
-                    .Append(PredkoscWiatruWyL)
+                    .Append(WindSpeedOutL)
                     .Append(";")
-                    .Append(KierunekWiatruWyL)
+                    .Append(WindDirectionOutL)
                     .Append(";")
-                    .Append(CisnienieSrPoziomStacjiWyL)
+                    .Append(PressureStationLevelOutL)
                     .Append(";")
-                    .Append(Opad12hWyL)
+                    .Append(Rain12hOutL)
                     .Append(";");
             }
             return sb.ToString();
