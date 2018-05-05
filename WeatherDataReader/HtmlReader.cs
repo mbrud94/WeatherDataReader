@@ -87,7 +87,10 @@ namespace WeatherDataReader
                         foreach (var cell in row.SelectNodes(".//td"))
                         {
                             if (!KEY_PROPERTIES.Contains(cellIdx))
+                            {
+                                cellIdx++;
                                 continue;
+                            }
 
                             string cellValue;
                             if (cellIdx == 14)
