@@ -17,7 +17,7 @@ namespace WeatherDataReader
         private int yearFrom;
         private int yearTo;
 
-        private List<MeteoData> allItems = new List<MeteoData>();
+        private List<MeteoData> allItems;
 
         public HtmlReader(string path, int yearFrom, int yearTo)
         {
@@ -28,15 +28,16 @@ namespace WeatherDataReader
 
         public List<MeteoData> Read()
         {
+            this.allItems = new List<MeteoData>();
             for (int i = yearFrom; i <= yearTo; i++)
             {
-                //ExtractTableFromFile(i);
+                ExtractHtmlTablesFromFiles(i);
                 ReadFromHtml(i);
             }
             return allItems;
         }
 
-        private void ExtractTableFromFile(int year)
+        private void ExtractHtmlTablesFromFiles(int year)
         {
             foreach (var file in Directory.GetFiles($@"{path}{year}\FullHtml"))
             {
@@ -64,8 +65,7 @@ namespace WeatherDataReader
 
         private void ReadFromHtml(int year)
         {
-            List<MeteoData> data = new List<MeteoData>();
-
+            int readRecords = 0;
             foreach (var file in Directory.GetFiles($@"{path}{year}\OnlyTables"))
             {
                 if (file.EndsWith(".html"))
@@ -74,7 +74,8 @@ namespace WeatherDataReader
                     doc.Load(file);
 
                     int rowCounter = 0;
-                    foreach (HtmlNode row in doc.DocumentNode.SelectNodes("//table[@id='tablepl']//tr"))
+                    var allRows = doc.DocumentNode.SelectNodes("//table[@id='tablepl']//tr");
+                    foreach (HtmlNode row in allRows)
                     {
                         if (rowCounter++ < 2) //skip table headers
                             continue;
@@ -104,15 +105,15 @@ namespace WeatherDataReader
                             }                            
                             cellIdx++;
                         }
-                        if (save && !data.Any(r => r.Date == meteoRecord.Date))
+                        if (save && !allItems.Any(r => r.Date == meteoRecord.Date))
                         {
-                            data.Add(meteoRecord);
+                            readRecords++;
+                            allItems.Add(meteoRecord);
                         }
                     }
                 }
             }
-            Console.WriteLine($"Data for {year} saved. Records: {data.Count}");
-            allItems.AddRange(data);
+            Console.WriteLine($"Data for {year} read. Records: {readRecords}");
         }
 
 
@@ -157,7 +158,7 @@ namespace WeatherDataReader
             return true;
         }
 
-        private static string MapWindProperty(HtmlNode cell)
+        private string MapWindProperty(HtmlNode cell)
         {
             double transform = Convert.ToDouble(cell.FirstChild.GetAttributeValue("data-rotate", "").Replace('.', ','));
             if (transform >= 270) transform = transform - 270;

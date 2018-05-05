@@ -9,11 +9,11 @@ namespace WeatherDataReader
     {
         private const double TEST_DATA_COUNT = 0.20;
 
-        public List<MeteoDataGroup> TrainData { get; set; } = new List<MeteoDataGroup>();
-        public List<MeteoDataGroup> TestData { get; set; } = new List<MeteoDataGroup>();
+        public List<MeteoDataRecord> TrainData { get; set; } = new List<MeteoDataRecord>();
+        public List<MeteoDataRecord> TestData { get; set; } = new List<MeteoDataRecord>();
         public Season Season { get; set; }
 
-        public MeteoDataSet(List<MeteoDataGroup> allData, Season s)
+        public MeteoDataSet(List<MeteoDataRecord> allData, Season s)
         {
             this.Season = s;
 

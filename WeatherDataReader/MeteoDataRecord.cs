@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeatherDataReader
 {
-    public class MeteoDataGroup
+    public class MeteoDataRecord
     {
         public List<MeteoData> Inputs { get; set; }
         public MeteoData Output { get; set; }
@@ -42,6 +42,12 @@ namespace WeatherDataReader
 
         }
 
+        public void Labelize()
+        {
+            Inputs.ForEach(i => i.Labelize(Season));
+            Output.Labelize(Season);
+        }
+
         public string ToString(LabelizationMode labelizationMode)
         {
             bool labelizeInput = labelizationMode == LabelizationMode.Both || labelizationMode == LabelizationMode.Input;
@@ -56,9 +62,9 @@ namespace WeatherDataReader
         }
 
 
-        public static List<MeteoDataGroup> PrepareGroups(List<MeteoData> ungrupedData, int inputSize)
+        public static List<MeteoDataRecord> PrepareRecords(List<MeteoData> ungrupedData, int inputSize)
         {
-            List<MeteoDataGroup> res = new List<MeteoDataGroup>();
+            List<MeteoDataRecord> res = new List<MeteoDataRecord>();
             int notValidGroups = 0;
 
             for(int i = 0; i < ungrupedData.Count - inputSize - 1; i++)
@@ -68,25 +74,28 @@ namespace WeatherDataReader
                 {
                     input.Add(new MeteoData(ungrupedData[i + j]));
                 }
-                MeteoDataGroup group = new MeteoDataGroup { Inputs = input, Output = new MeteoData(ungrupedData[i + inputSize]) };
-                if(IsGroupValid(group))
+                MeteoDataRecord group = new MeteoDataRecord
+                {
+                    Inputs = input,
+                    Output = new MeteoData(ungrupedData[i + inputSize])
+                };
+                if(IsRecordValid(group))
                 {
                     res.Add(group);
                     group.SetSeason();
-                    group.Inputs.ForEach(inpt => inpt.PrepateOutputAndLabelize(group.Season));
-                    group.Output.PrepateOutputAndLabelize(group.Season);
+                    //group.Inputs.ForEach(inpt => inpt.Labelize(group.Season));
+                    //group.Output.Labelize(group.Season);
                 }
                 else
                 {
                     notValidGroups++;
                 }
             }
-
             Console.WriteLine("Not valid groups: " + notValidGroups);
             return res;
         }
 
-        private static bool IsGroupValid(MeteoDataGroup group)
+        private static bool IsRecordValid(MeteoDataRecord group)
         {
             MeteoData prevInput = group.Inputs[0];
             for(int i = 1; i < group.Inputs.Count; i++)

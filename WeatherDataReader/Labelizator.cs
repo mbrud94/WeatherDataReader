@@ -6,7 +6,7 @@ namespace WeatherDataReader
 {
     public class Labelizator
     {
-        public void LabelizeInput(MeteoData item, Season season)
+        public void LabelizeRecord(MeteoData item, Season season)
         {
             item.WindDirectionL = GetWindDirectionLabel(item.WindDirection);
             item.WindSpeedL = GetWindSpeedLabel(item.WindSpeed);
@@ -16,18 +16,6 @@ namespace WeatherDataReader
             item.TempMinL = GetTempMinLabel(item.TempMin, season);
             item.TempMaxL = GetTempMaxLabel(item.TempMax, season);
             item.PressureStationLevelL = GetPreasureLabel(item.PressureStationLevel);
-        }
-
-        public void LabelizeOutput(MeteoData item, Season season)
-        {
-            item.WindDirectionOutL = GetWindDirectionLabel(item.WindDirection);
-            item.WindSpeedOutL = GetWindSpeedLabel(item.WindSpeed);
-            item.CloudyAvgOutL = GetCloudyLabel(item.CloudyAvg);
-            item.Rain12hOutL = GetRainLabel(item.Rain12h);
-            item.TempAvgOutL = GetTempLabel(item.TempAvg, season);
-            item.TempMinOutL = GetTempMinLabel(item.TempMin, season);
-            item.TempMaxOutL = GetTempMaxLabel(item.TempMax, season);
-            item.PressureStationLevelOutL = GetPreasureLabel(item.PressureStationLevel);
         }
 
         private int GetTempLabel(double temp, Season season)

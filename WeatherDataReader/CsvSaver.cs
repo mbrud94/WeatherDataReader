@@ -20,19 +20,14 @@ namespace WeatherDataReader
             {
                 sw.WriteLine(MeteoData.GetHeader(groupSize));
                 foreach(var gr in dataSet.TrainData)
-                {
                     sw.WriteLine(gr.ToString(labelizationMode));
-                }
             }
             using (StreamWriter sw = new StreamWriter(pathToSave.Replace(DS_TYPE, "Test")))
             {
                 sw.WriteLine(MeteoData.GetHeader(groupSize));
                 foreach (var gr in dataSet.TestData)
-                {
                     sw.WriteLine(gr.ToString(labelizationMode));
-                }
             }
-
         }
     }
 }

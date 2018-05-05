@@ -24,7 +24,6 @@ namespace WeatherDataReader
     {
         public DateTime Date { get; set; }
 
-
         public double TempMax { get; set; }
         public double TempMin { get; set; }
         public double TempAvg { get; set; }
@@ -43,23 +42,23 @@ namespace WeatherDataReader
         public int PressureStationLevelL { get; set; }
         public int Rain12hL { get; set; }
 
-        public double TempMaxOut { get; set; }
-        public double TempMinOut { get; set; }
-        public double TempAvgOut { get; set; }
-        public double CloudyAvgOut { get; set; }
-        public double WindSpeedOut { get; set; }
-        public double WindDirectionOut { get; set; }
-        public double PressureStationLevelOut { get; set; }
-        public double Rain12hOut { get; set; }
-
-        public int TempMaxOutL { get; set; }
-        public int TempMinOutL { get; set; }
-        public int TempAvgOutL { get; set; }
-        public int CloudyAvgOutL { get; set; }
-        public int WindSpeedOutL { get; set; }
-        public int WindDirectionOutL { get; set; }
-        public int PressureStationLevelOutL { get; set; }
-        public int Rain12hOutL { get; set; }
+        //public double TempMaxOut { get; set; }
+        //public double TempMinOut { get; set; }
+        //public double TempAvgOut { get; set; }
+        //public double CloudyAvgOut { get; set; }
+        //public double WindSpeedOut { get; set; }
+        //public double WindDirectionOut { get; set; }
+        //public double PressureStationLevelOut { get; set; }
+        //public double Rain12hOut { get; set; }
+        //
+        //public int TempMaxOutL { get; set; }
+        //public int TempMinOutL { get; set; }
+        //public int TempAvgOutL { get; set; }
+        //public int CloudyAvgOutL { get; set; }
+        //public int WindSpeedOutL { get; set; }
+        //public int WindDirectionOutL { get; set; }
+        //public int PressureStationLevelOutL { get; set; }
+        //public int Rain12hOutL { get; set; }
 
         //unused properties
         public double DevPointTempAvg { get; set; }
@@ -109,18 +108,18 @@ namespace WeatherDataReader
             //PrepareOutput(s);
         }
 
-        public void PrepateOutputAndLabelize(Season s)
+        public void Labelize(Season s)
         {
             LabelizeInput(s);
-            PrepareOutput(s);
+            //PrepareOutput(s);
         }
 
         private void LabelizeInput(Season season)
         {
-            new Labelizator().LabelizeInput(this, season);
+            new Labelizator().LabelizeRecord(this, season);
         }
 
-        private void PrepareOutput(Season season)
+        /*private void PrepareOutput(Season season)
         {
             WindDirectionOut = WindDirection;
             WindSpeedOut = WindSpeed;
@@ -131,7 +130,7 @@ namespace WeatherDataReader
             TempMinOut = TempMin;
             PressureStationLevelOut = PressureStationLevel;
             new Labelizator().LabelizeOutput(this, season);
-        }
+        }*/
 
         public static string GetHeader(int groupSize)
         {
@@ -232,7 +231,8 @@ namespace WeatherDataReader
 
         public string ToOutputString(bool labelize)
         {
-            StringBuilder sb = new StringBuilder();
+            return ToInputString(labelize);
+            /*StringBuilder sb = new StringBuilder();
             if (!labelize)
             {
                 sb.Append(TempMaxOut)
@@ -271,7 +271,7 @@ namespace WeatherDataReader
                     .Append(Rain12hOutL)
                     .Append(";");
             }
-            return sb.ToString();
+            return sb.ToString();*/
         }
 
     }
